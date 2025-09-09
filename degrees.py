@@ -92,6 +92,24 @@ def shortest_path(source, target):
     If no possible path, returns None.
     """
 
+    print("source: " + source + "\ntarget: " + target)
+    print("\nnames.get: " + str(names.get(source)))
+    print("\npeople.get: " + str(people.get(source)))
+    print("\nmovies.get: " + str(movies.get(source)))
+    # for i in range(5):
+    #     print((people.get(source)['movies']))
+
+    print("neighbors for " + source + " are: " + str(neighbors_for_person(source)))
+
+
+    nSource = Node (source, None, None)
+    stack = StackFrontier()
+    stack.add(nSource)
+    print("s.c_s: " + str(stack.contains_state(source)))
+
+    #for i in range()
+
+
     # # TODO
     # raise NotImplementedError
 
