@@ -92,23 +92,39 @@ def shortest_path(source, target):
     If no possible path, returns None.
     """
 
-    print("source: " + source + "\ntarget: " + target)
-    print("\nnames.get: " + str(names.get(source)))
-    print("\npeople.get: " + str(people.get(source)))
-    print("\nmovies.get: " + str(movies.get(source)))
-    # for i in range(5):
-    #     print((people.get(source)['movies']))
-
-    print("neighbors for " + source + " are: " + str(neighbors_for_person(source)))
-
-
+    # print("source: " + source + "\ntarget: " + target)
+    # print("\nnames.get: " + str(names.get(source)))
+    # print("\npeople.get: " + str(people.get(source)))
+    # print("\nmovies.get: " + str(movies.get(source)))
+    # print("s.c_s: " + str(queue.contains_state(source)))
+    # print("neighbors for " + source + " are: " + str(neighbors_for_person(source)))
+    #
+    #
     nSource = Node (source, None, None)
-    stack = StackFrontier()
-    stack.add(nSource)
-    print("s.c_s: " + str(stack.contains_state(source)))
+    queue = QueueFrontier()
+    queue.add(nSource)
+    visited = set()
 
-    #for i in range()
+    while not queue.empty():
+        node = queue.remove()
+        person = node.state
 
+        if person == target:
+            path = []
+            while node.parent is not None:
+                path.append((node.action, node.state))
+                node = node.parent
+            path.reverse()
+            return path
+
+        visited.add(person)
+
+        for (movie_id, person_id) in neighbors_for_person(person):
+            if person_id not in visited and not queue.contains_state(person_id):
+                nNew = Node (person_id, node, movie_id)
+                queue.add(nNew)
+
+    return None
 
     # # TODO
     # raise NotImplementedError
